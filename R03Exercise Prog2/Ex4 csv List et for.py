@@ -4,8 +4,8 @@ os.chdir(os.path.dirname(__file__))   # Elles permettent de se positionner dans 
 
 
 # Importez le module csv
-
-
+import csv
+os.chdir(os.path.dirname(__file__))
 
 # Nous avons des offres de stages and le fichier "Ex4 Emplois Reseautique.csv"
 # Faites un petit script qui ouvre le fichier csv en mode lecture et qui affiche uniquement les offres ou la demande de Diplôme a la valeur 'Dec' ou 'Non déterminé'
@@ -45,7 +45,12 @@ ficher_a_lire = os.path.join("csvs","Ex4 Emplois Reseautique.csv" )
 # INSTRUCTIONS DÉTAILLÉES
 # Ouvrez en lecture le fichier "Ex4 Emplois Reseautique.csv", en utilisant l'encoding utf-8   
 # Lisez tout le contenu du fichier avec csv.reader() avec le delimiter=';'  
-
+with open(ficher_a_lire,'r',encoding='utf-8') as csv_file:
+    csv_read = csv.reader(csv_file, delimiter= ";")
+    next(csv_read)
+    for line in csv_read:
+      if'Dec' in line[4] or 'Non déterminé' in line[4]:
+         print(line)
 # Sautez la première ligne avec next() puisqu'elle ne contient que les entêtes de colonnes
 # Dans votre boucle qui passera à travers les lignes
 #      ATTENTION chaque ligne d'un fichier csv est une liste
